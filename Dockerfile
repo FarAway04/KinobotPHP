@@ -1,13 +1,14 @@
 FROM php:8.2-apache
 
-# Zarur extensionlarni o‘rnatish
-RUN docker-php-ext-install pdo pdo_sqlite
-
-# Apache DocumentRoot
+# Apache config ixtiyoriy
 WORKDIR /var/www/html
 
-# Hammasini konteynerga nusxalash
+# SQLITE3 kerakli paketlarni o‘rnat
+RUN apt-get update && \
+    apt-get install -y sqlite3 libsqlite3-dev && \
+    docker-php-ext-install pdo pdo_sqlite
+
+# Hamma fayllarni konteynerga nusxala
 COPY . /var/www/html
 
-# Apache port ochish
 EXPOSE 80
