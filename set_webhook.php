@@ -1,9 +1,7 @@
 <?php
 $token = getenv("API_TOKEN");
-$url = "https://kinobotphp.onrender.com";
+$webhook_url = "https://kinobotphp.onrender.com/Bot.php";
 
-$api = "https://api.telegram.org/bot$token/setWebhook?url=" . urlencode($url);
+$res = file_get_contents("https://api.telegram.org/bot$token/setWebhook?url=$webhook_url");
 
-$response = file_get_contents($api);
-
-echo $response;
+echo $res;
