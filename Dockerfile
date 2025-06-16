@@ -1,17 +1,11 @@
-# PHP Apache bazasi
-FROM php:8.2-apache
+# PHP image
+FROM php:8.1-apache
 
-# PHP extensions
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Curl va sqlite o‘rnatish
+RUN docker-php-ext-install pdo pdo_sqlite
 
-# Apache uchun rewrite yoqish (agar kerak bo‘lsa)
-RUN a2enmod rewrite
-
-# KODLARNI KOPIYALASH
+# Apache index.php o‘rniga Bot.php ni asosiy qilamiz
 COPY . /var/www/html/
 
-# (ixtiyoriy) Apache user permission
-RUN chown -R www-data:www-data /var/www/html
-
-# 80-port ochish
+# Port
 EXPOSE 80
