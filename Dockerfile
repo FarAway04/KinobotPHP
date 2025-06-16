@@ -1,17 +1,23 @@
-# Rasm asosida PHP + curl
-FROM php:8.1-cli
+# PHPning rasmiy Apache imagini olamiz
+FROM php:8.2-apache
 
-# cURL va SSL extensionlarini qo‘sh
+# Tizim kutubxonalarini yangilash va kerakli dev paketlarini o‘rnatish
+RUN apt-get update && apt-get install -y \
+    libcurl4-openssl-dev \
+    pkg-config \
+    libssl-dev
+
+# PHP cURL extension ni o‘rnatish
 RUN docker-php-ext-install curl
 
-# Kodingni konteyner ichiga ko‘chir
-COPY . /app
+# Apache uchun rewrite modulini yoqish (agar kerak bo‘lsa)
+RUN a2enmod rewrite
 
-# Ishchi katalog
-WORKDIR /app
+# Loyihani containerga nusxalash
+COPY . /var/www/html
 
-# 80 port och (PHP server uchun zarur emas, lekin ba’zi platformalar tekshiradi)
+# Apache document rootni sozlash (optional)
+# RUN sed -i 's|/var/www/html|/var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+
+# Port
 EXPOSE 80
-
-# Ishga tushirish komandasi (nginx yo‘q, faqat PHP ishlaydi)
-CMD ["php", "-S", "0.0.0.0:80"]
