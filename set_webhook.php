@@ -1,20 +1,9 @@
-<?php
-// .env-dan API token
-$API_TOKEN = getenv('API_TOKEN');
+<? PHP
+$ token = getenv ("API_TOLEN");
+$ url = "https: //your_project_url/bot.php";
 
-// Webhook URL — faqat shu yerga o'zgartir!
-$WEBHOOK_URL = 'https://kinobotphp.onrender.com/Bot.php';
+$ api = "https://api.telegram.org/bot 0tookoke/setwebhook?url=". URLECRode ($ url);
 
-// To'liq Telegram API URL
-$API_URL = "https://api.telegram.org/bot$API_TOKEN/setWebhook?url=" . urlencode($WEBHOOK_URL);
+$ javob = fayl_get_onronentlar ($ api);
 
-// Curl orqali so'rov yuborish
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $API_URL);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
-
-// Natija chiqarish
-echo $response;
-?>
+Echo $ javob;
