@@ -3,8 +3,8 @@
 $token = getenv("API_TOKEN");
 $admin_id = getenv("ADMIN_ID");
 
-// 📌 SQLite ulash
-$db = new PDO("sqlite:kinolar.db");
+// 📌 SQLite ulash (to‘liq yo‘l bilan)
+$db = new PDO("sqlite:/var/www/html/kinolar.db");
 
 // 📌 Bazani tayyorlash (agar jadval bo‘lmasa)
 $db->exec("CREATE TABLE IF NOT EXISTS kinolar (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, link TEXT)");
