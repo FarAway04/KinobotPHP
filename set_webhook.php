@@ -1,9 +1,9 @@
-<? PHP
-$ token = getenv ("API_TOLEN");
-$ url = "https: //your_project_url/bot.php";
+<?php
+$token = getenv("API_TOKEN");
+$url = "https://YOUR_PROJECT_URL/Bot.php";
 
-$ api = "https://api.telegram.org/bot 0tookoke/setwebhook?url=". URLECRode ($ url);
+$api = "https://api.telegram.org/bot$token/setWebhook?url=" . urlencode($url);
 
-$ javob = fayl_get_onronentlar ($ api);
+$response = file_get_contents($api);
 
-Echo $ javob;
+echo $response;
