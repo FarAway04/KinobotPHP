@@ -1,10 +1,11 @@
-# PHP Apache bilan boshlaymiz
 FROM php:8.2-apache
 
-# zarur tizim kutubxonalarini o‘rnatamiz:
-RUN apt-get update && \
-    apt-get install -y libsqlite3-dev && \
-    docker-php-ext-install pdo pdo_sqlite
+# PHP extension lar
+RUN docker-php-ext-install pdo pdo_sqlite
 
-# Loyihani containerga nusxalash
-COPY . /var/www/html/
+# Apache conf va DocumentRoot
+WORKDIR /var/www/html
+
+COPY . /var/www/html
+
+EXPOSE 80
