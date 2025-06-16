@@ -1,11 +1,10 @@
-# PHP image
-FROM php:8.1-apache
+# PHP Apache bilan boshlaymiz
+FROM php:8.2-apache
 
-# Curl va sqlite o‘rnatish
-RUN docker-php-ext-install pdo pdo_sqlite
+# zarur tizim kutubxonalarini o‘rnatamiz:
+RUN apt-get update && \
+    apt-get install -y libsqlite3-dev && \
+    docker-php-ext-install pdo pdo_sqlite
 
-# Apache index.php o‘rniga Bot.php ni asosiy qilamiz
+# Loyihani containerga nusxalash
 COPY . /var/www/html/
-
-# Port
-EXPOSE 80
